@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System</title>
+    <link rel="icon" type="image/png" href="icon.png"> 
+    <!-- Link to Tailwind CSS from CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Link to Font Awesome icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Importing fonts (if needed) */
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Poetsen+One&display=swap');
+
+        body {
+            font-family: 'Merriweather', serif; /* Font style for the body */
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4; /* Light background color */
+        }
+        .projects-title {
+            text-align: center; /* Center the title */
+            font-family: 'Poetsen One', cursive; /* Font style for the title */
+            color: #3f3f3f; /* Purple color for the title */
+            margin-top: 2rem; /* Margin at the top */
+            font-size: 2rem; /* Font size for the title */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex; /* Flexbox for layout */
+            gap: 1rem; /* Space between columns */
+        }
+
+        .details {
+            flex: 1; /* Take up available space */
+            text-align: left;
+        }
+
+        .details h1 {
+            font-family: 'Poetsen One', cursive; /* Font style for the title */
+            color: #6b46c1; /* Purple color for the title */
+            margin-top: 0; /* Remove default margin */
+        }
+
+        .details .date {
+            font-family: 'Merriweather', serif; /* Font style for the date */
+            color: #333;
+            margin-bottom: 1rem; /* Space below the date */
+        }
+
+        .details p {
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .images {
+            flex: 1; /* Take up available space */
+            display: flex;
+            flex-wrap: wrap; /* Allow images to wrap */
+            gap: 1rem; /* Space between images */
+            justify-content: center; /* Center images */
+            background-color: #e0e0e0; /* Light gray background color */
+            border-radius: 8px; /* Rounded corners for the container */
+            padding: 1rem; /* Padding inside the container */
+        }
+
+        .images img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px; /* Optional: rounded corners for images */
+            width: 100%; /* Ensure images scale properly */
+            object-fit: cover; /* Ensure images cover the space */
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #6b46c1; /* Purple background */
+            color: white; /* White text */
+            border-radius: 0.375rem; /* Rounded corners */
+            text-decoration: none; /* Remove underline */
+            transition: background-color 0.3s ease; /* Smooth transition */
+            font-family: 'Poetsen One', cursive; /* Font style */
+        }
+
+        .back-button:hover {
+            background-color: #d53f8c; /* Pink background on hover */
+        }
+
+        .attachment-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #38a1db; /* Blue background for attachment */
+            color: white; /* White text */
+            border-radius: 0.375rem; /* Rounded corners */
+            text-decoration: none; /* Remove underline */
+            transition: background-color 0.3s ease; /* Smooth transition */
+            font-family: 'Poetsen One', cursive; /* Font style */
+        }
+
+        .attachment-link:hover {
+            background-color: #0284c7; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+<!-- Header section -->
+<header class="bg-gradient-to-r from-purple-200 to-pink-400 py-4">
+    <div class="mx-auto flex justify-between items-center px-4">
+        <a href="index.html" class="flex items-center space-x-2">
+            <!-- Icon Image -->
+            <img src="icon.png" alt="Portfolio Icon" class="w-9 h-9">
+            <!-- Text -->
+            <h1 class="text-white text-2xl font-bold">My Portfolio</h1>
+        </a>
+        <nav>
+            <ul class="flex space-x-4">
+                <li><a href="index.html#about" class="text-white transition duration-300 hover:bg-purple-500 hover:bg-opacity-25 rounded-lg px-3 py-1"><i class="fas fa-user"></i> About</a></li>
+                <li><a href="index.html#projects" class="text-white transition duration-300 hover:bg-purple-500 hover:bg-opacity-25 rounded-lg px-3 py-1"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                <li><a href="index.html#contact" class="text-white transition duration-300 hover:bg-purple-500 hover:bg-opacity-25 rounded-lg px-3 py-1"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Projects Section -->
+<h2 class="projects-title">Projects</h2> <!-- Centered Projects Title -->
+
+<div class="container mx-auto">
+    <div class="details">
+        <h1>Hospital Management System</h1>
+        <div class="date">May 2024</div>
+        <p><strong>Role:</strong> System Analyst</p>
+        <p>This project involves the development of a comprehensive system to manage hospital operations. It includes functionalities for managing patient records, scheduling appointments, processing billing, and generating reports. The system aims to streamline hospital management and improve operational efficiency.</p>
+        <p>Technologies used: JavaScript, PostgreSQL, HTML/CSS.</p>
+        <a href="index.html#projects" class="back-button">Back to Projects</a>
+        <a href="https://drive.google.com/file/d/1-9QjGl55jWl-kI30Bm8Xy3zgnCJ3oYGV/view?usp=sharing" target="_blank" class="attachment-link">View Full Presentation</a>
+    </div>
+    <div class="images">
+        <img src="hms.jpg" alt="Hospital Management System Image 1">
+        <img src="hms2.jpg" alt="Hospital Management System Image 2">
+        <img src="hms3.jpg" alt="Hospital Management System Image 3">
+    </div>
+</div>
+
+</body>
+</html>
