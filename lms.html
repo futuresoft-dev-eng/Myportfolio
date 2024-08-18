@@ -37,15 +37,26 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             display: flex;
             gap: 1rem;
+            position: relative;
+            justify-content: center; /* Center horizontally */
         }
 
         .details {
             flex: 1;
+            text-align: center; /* Center text inside .details */
+            margin-top: 30px;
+
         }
 
         .details h1 {
             font-family: 'Poetsen One', cursive;
             color: #6b46c1;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .details h1:hover {
+            transform: scale(1.05);
+            color: #d53f8c;
         }
 
         .details .date {
@@ -56,6 +67,14 @@
         .details p {
             line-height: 1.6;
             color: #333;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .details p:hover {
+            background-color: #e2e8f0;
+            color: #1a202c;
+            padding: 0.5rem;
+            border-radius: 4px;
         }
 
         .images {
@@ -75,11 +94,19 @@
             border-radius: 8px;
             width: 100%;
             object-fit: cover;
+            cursor: pointer; /* Ensure images are clickable */
         }
 
-        .back-button, .attachment-link {
-            display: inline-block;
+        .button-container {
+            display: flex;
+            gap: 1rem;
             margin-top: 1rem;
+            justify-content: center; /* Center buttons horizontally */
+
+        }
+
+        .back-button, .attachment-link, .next-button {
+            display: inline-block;
             padding: 0.5rem 1rem;
             border-radius: 0.375rem;
             text-decoration: none;
@@ -104,6 +131,57 @@
         .attachment-link:hover {
             background-color: #0284c7;
         }
+
+        .next-button {
+            background-color: #38a1db;
+            color: white;
+        }
+
+        .next-button:hover {
+            background-color: #0284c7;
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+        }
+
+        .lightbox .close, .lightbox .next, .lightbox .prev {
+            position: absolute;
+            top: 50%;
+            font-size: 2rem;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .lightbox .close {
+            right: 20px;
+            top: 20px;
+        }
+
+        .lightbox .next {
+            right: 20px;
+            transform: translateY(-50%);
+        }
+
+        .lightbox .prev {
+            left: 20px;
+            transform: translateY(-50%);
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -115,18 +193,17 @@
             <!-- Icon Image -->
             <img src="icon.png" alt="Portfolio Icon" class="w-9 h-9">
             <!-- Text -->
-            <h1 class="text-white text-2xl font-bold">My Portfolio</h1>
+            <h1 class="text-white text-2xl font-bold hover-effect">My Portfolio</h1>
         </a>
         <nav>
             <ul class="flex space-x-4">
-                <li><a href="index.html#about" class="text-white transition duration-300 hover:bg-purple-500 hover:bg-opacity-25 rounded-lg px-3 py-1"><i class="fas fa-user"></i> About</a></li>
-                <li><a href="index.html#projects" class="text-white transition duration-300 hover:bg-purple-500 hover:bg-opacity-25 rounded-lg px-3 py-1"><i class="fas fa-project-diagram"></i> Projects</a></li>
-                <li><a href="index.html#contact" class="text-white transition duration-300 hover:bg-purple-500 hover:bg-opacity-25 rounded-lg px-3 py-1"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="index.html#about" class="text-white transition duration-300 hover:bg-purple-500 hover:bg-opacity-25 rounded-lg px-3 py-1 hover-effect"><i class="fas fa-user"></i> About</a></li>
+                <li><a href="index.html#projects" class="text-white transition duration-300 hover:bg-purple-500 hover:bg-opacity-25 rounded-lg px-3 py-1 hover-effect"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                <li><a href="index.html#contact" class="text-white transition duration-300 hover:bg-purple-500 hover:bg-opacity-25 rounded-lg px-3 py-1 hover-effect"><i class="fas fa-envelope"></i> Contact</a></li>
             </ul>
         </nav>
     </div>
 </header>
-
 
 <!-- Projects Section -->
 <h2 class="projects-title">Projects</h2> <!-- Centered Projects Title -->
@@ -137,15 +214,60 @@
         <div class="date">May 2024</div>
         <p><strong>Role:</strong> Programmer/System Analyst</p>
         <p>This project involves the development of a comprehensive system for managing employee leave requests and approvals. It includes functionalities for submitting leave requests, reviewing pending requests, and generating reports on leave usage. The system aims to streamline the leave management process and improve administrative efficiency. Technologies used are PHP, MySQL, HTML/CSS.</p>
-        <a href="index.html#projects" class="back-button">Back to Projects</a>
-        <a href="https://docs.google.com/presentation/d/1zpg98hrgaAZ0YZtOcgQHYwY9v4C98Y-K/edit?usp=sharing&ouid=106073581126533369133&rtpof=true&sd=true" target="_blank" class="attachment-link">View Full Presentation</a>
+        <div class="button-container">
+            <a href="index.html#projects" class="back-button">Back to Projects</a>
+            <a href="https://docs.google.com/presentation/d/1zpg98hrgaAZ0YZtOcgQHYwY9v4C98Y-K/edit?usp=sharing&ouid=106073581126533369133&rtpof=true&sd=true" target="_blank" class="attachment-link">View Full Presentation</a>
+            <a href="hms.html" class="next-button">Next Project</a>
+        </div>
     </div>
     <div class="images">
-        <img src="lms.jpg" alt="Project Image 1">
-        <img src="lms2.jpg" alt="Project Image 2">
-        <img src="lms3.jpg" alt="Project Image 3">
+        <img src="lms.jpg" alt="Project Image 1" onclick="openLightbox(0)">
+        <img src="lms2.jpg" alt="Project Image 2" onclick="openLightbox(1)">
+        <img src="lms3.jpg" alt="Project Image 3" onclick="openLightbox(2)">
     </div>
 </div>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-image" src="" alt="Lightbox Image">
+    <span class="prev" onclick="prevImage()">&#10094;</span>
+    <span class="next" onclick="nextImage()">&#10095;</span>
+</div>
+
+<!-- Custom JavaScript for Lightbox -->
+<script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const images = document.querySelectorAll('.images img');
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+        currentIndex = index;
+        lightboxImage.src = images[index].src;
+        lightbox.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+        lightbox.style.display = 'none';
+    }
+
+    function prevImage() {
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+        lightboxImage.src = images[currentIndex].src;
+    }
+
+    function nextImage() {
+        currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+        lightboxImage.src = images[currentIndex].src;
+    }
+
+    window.addEventListener('click', function(event) {
+        if (event.target === lightbox) {
+            closeLightbox();
+        }
+    });
+</script>
 
 </body>
 </html>
