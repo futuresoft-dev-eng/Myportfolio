@@ -37,15 +37,26 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             display: flex;
             gap: 1rem;
+            position: relative;
+            justify-content: center; /* Center horizontally */
         }
 
         .details {
             flex: 1;
+            text-align: center; /* Center text inside .details */
+            margin-top: 30px;
+
         }
 
         .details h1 {
             font-family: 'Poetsen One', cursive;
             color: #6b46c1;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .details h1:hover {
+            transform: scale(1.05);
+            color: #d53f8c;
         }
 
         .details .date {
@@ -56,6 +67,14 @@
         .details p {
             line-height: 1.6;
             color: #333;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .details p:hover {
+            background-color: #e2e8f0;
+            color: #1a202c;
+            padding: 0.5rem;
+            border-radius: 4px;
         }
 
         .images {
@@ -64,7 +83,7 @@
             flex-wrap: wrap;
             gap: 1rem;
             justify-content: center;
-            background-color: #e0e0e0;
+            background-color: #e8e2f5;
             border-radius: 8px;
             padding: 1rem;
         }
@@ -75,11 +94,19 @@
             border-radius: 8px;
             width: 100%;
             object-fit: cover;
+            cursor: pointer; /* Ensure images are clickable */
         }
 
-        .back-button, .attachment-link {
-            display: inline-block;
+        .button-container {
+            display: flex;
+            gap: 1rem;
             margin-top: 1rem;
+            justify-content: center; /* Center buttons horizontally */
+
+        }
+
+        .back-button, .attachment-link, .next-button {
+            display: inline-block;
             padding: 0.5rem 1rem;
             border-radius: 0.375rem;
             text-decoration: none;
@@ -103,6 +130,57 @@
 
         .attachment-link:hover {
             background-color: #0284c7;
+        }
+
+        .next-button {
+            background-color: #38a1db;
+            color: white;
+        }
+
+        .next-button:hover {
+            background-color: #0284c7;
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+        }
+
+        .lightbox .close, .lightbox .next, .lightbox .prev {
+            position: absolute;
+            top: 50%;
+            font-size: 2rem;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .lightbox .close {
+            right: 20px;
+            top: 20px;
+        }
+
+        .lightbox .next {
+            right: 20px;
+            transform: translateY(-50%);
+        }
+
+        .lightbox .prev {
+            left: 20px;
+            transform: translateY(-50%);
         }
     </style>
 </head>
@@ -136,15 +214,72 @@
         <div class="date">May 2023</div>
         <p><strong>Role:</strong> System Analyst / UX/UI Designer</p>
         <p>This project developed an appointment scheduling system for a salon. The system streamlined the appointment booking process, reducing scheduling conflicts. Technologies used are PHP, MySQL, HTML/CSS, JavaScript.</p>
-        <a href="index.html#projects" class="back-button">Back to Projects</a>
-        <a href="https://drive.google.com/file/d/1eZbO9eDSwRzDIabK-iY_48S2LGVCP7OV/view?usp=sharing" target="_blank" class="attachment-link">View Full Presentation</a>
+       
+       
+        <div class="button-container">
+        <a href="https://drive.google.com/file/d/1eZbO9eDSwRzDIabK-iY_48S2LGVCP7OV/view?usp=sharing" target="_blank" class="attachment-link">
+            <i class="fas fa-file-alt"></i> View Full Presentation</a>
+        </div>
+        <div class="button-container">
+            <a href="javascript:history.back()" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back </a>
+             <a href="tms.html" class="next-button">Next   <i class="fas fa-arrow-right"></i> </a>
+            </div>
+
+
+
+
     </div>
     <div class="images">
-        <img src="salon1.jpg" alt="Salon System Image 1">
-        <img src="salon2.jpg" alt="Salon System Image 2">
-        <img src="salon3.jpg" alt="Salon System Image 3">
+        <img src="salon1.jpg" alt="Salon System Image 1" onclick="openLightbox(0)">
+        <img src="salon2.jpg" alt="Salon System Image 2" onclick="openLightbox(1)">
+        <img src="salon3.jpg" alt="Salon System Image 3" onclick="openLightbox(2)">
     </div>
 </div>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-image" src="" alt="Lightbox Image">
+    <span class="prev" onclick="prevImage()">&#10094;</span>
+    <span class="next" onclick="nextImage()">&#10095;</span>
+</div>
+
+
+
+<!-- Custom JavaScript for Lightbox -->
+<script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const images = document.querySelectorAll('.images img');
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+        currentIndex = index;
+        lightboxImage.src = images[index].src;
+        lightbox.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+        lightbox.style.display = 'none';
+    }
+
+    function prevImage() {
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+        lightboxImage.src = images[currentIndex].src;
+    }
+
+    function nextImage() {
+        currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+        lightboxImage.src = images[currentIndex].src;
+    }
+
+    window.addEventListener('click', function(event) {
+        if (event.target === lightbox) {
+            closeLightbox();
+        }
+    });
+</script>
 
 </body>
 </html>
